@@ -1,3 +1,14 @@
+before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - ssh-keyscan github.com >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+  - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
 test:
   stage: test
   tags:
@@ -9,8 +20,7 @@ test:
     - git remote add github git@github.com:FED-CLUB/example.git
     - git config user.name fed-bot
     - git config user.email fed-bot@isyscore.com
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - ssh git@github.com
     - git push --set-upstream github v1.x
     - echo "推送成功"
   only:
