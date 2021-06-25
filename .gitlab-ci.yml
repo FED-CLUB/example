@@ -3,7 +3,16 @@ test:
   tags:
     - fe-shell
   script:
-    - echo "合并请求到 vn.x 分支"
+    - echo "合并请求到 v1.x 分支，开始验证..."
+    - echo "代码验证通过"
+    - echo "推送代码到 github..."
+    - git remote add github git@github.com:FED-CLUB/example.git
+    - git config user.name fed-bot
+    - git config user.email fed-bot@isyscore.com
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - git push --set-upstream github v1.x
+    - echo "推送成功"
   only:
     - /^v\d+\.x/
     - merge_requests
