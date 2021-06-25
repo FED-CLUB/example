@@ -1,0 +1,7 @@
+test:
+  stage: test
+  script:
+    - echo "合并请求到 vn.x 分支"
+  only:
+    - /^v\d+\.x/
+    - merge_requests
