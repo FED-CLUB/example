@@ -1,5 +1,7 @@
 test:
   stage: test
+  tags:
+    - fe-shell
   script:
     - echo "合并请求到 vn.x 分支"
   only:
