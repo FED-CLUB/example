@@ -9,7 +9,6 @@ test:
     - if [ "$(git remote add github git@github.com:FED-CLUB/example.git)" ]; then echo "ok"; fi;
     - git config user.name fed-bot
     - git config user.email fed-bot@isyscore.com
-    - ssh git@github.com
     - git push --set-upstream github v1.x
     - echo "推送成功"
   only:
