@@ -6,7 +6,7 @@ test:
     - echo "合并请求到 v1.x 分支，开始验证..."
     - echo "代码验证通过"
     - echo "推送代码到 github..."
-    - git remote add github git@github.com:FED-CLUB/example.git
+    - if [ "$(git remote add github git@github.com:FED-CLUB/example.git)" ]; then echo "ok"; fi;
     - git config user.name fed-bot
     - git config user.email fed-bot@isyscore.com
     - ssh git@github.com
