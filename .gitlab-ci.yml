@@ -1,4 +1,4 @@
-test:
+merge-and-push:
   stage: test
   tags:
     - fe-shell
