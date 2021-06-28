@@ -13,5 +13,5 @@ test:
     - git push --set-upstream github v1.x
     - echo "推送成功"
   only:
-    - /^v\d+\.x/
+    - v1.x
     - merge_requests
