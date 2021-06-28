@@ -11,6 +11,7 @@ merge-and-push:
     - git config user.name fed-bot
     - git config user.email fed-bot@isyscore.com
     - git checkout v1.x
+    - git pull origin v1.x
     - git push --set-upstream github v1.x
     - echo "推送成功"
   only:
