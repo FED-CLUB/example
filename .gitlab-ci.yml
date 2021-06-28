@@ -3,6 +3,7 @@ test:
   tags:
     - fe-shell
   script:
+    - whoami
     - echo "合并请求到 v1.x 分支，开始验证..."
     - echo "代码验证通过"
     - echo "推送代码到 github..."
