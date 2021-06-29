@@ -1,0 +1,16 @@
+{
+    "name": "fed-club-example-pkg",
+    "version": "1.0.0",
+    "description": "一个演示的 npm 包",
+    "keywords": [
+        "cloudcome",
+        "ydr.me"
+    ],
+    "author": "云淡然 <cloudcome@163.com>",
+    "homepage": "https://github.com/FED-CLUB/example",
+    "repository": "https://github.com/FED-CLUB/example",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {},
+    "peerDependencies": {}
+}
