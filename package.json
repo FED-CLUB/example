@@ -1,5 +1,5 @@
 {
-    "name": "fed-club-example-pkg",
+    "name": "@isyscore/example",
     "version": "1.0.0",
     "description": "一个演示的 npm 包",
     "keywords": [

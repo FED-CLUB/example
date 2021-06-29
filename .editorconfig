@@ -1,0 +1,14 @@
+# https://editorconfig.org/
+# 由 @isyscore/cli@1.23.0 于 2021-04-27 16:32:54 自动生成
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
