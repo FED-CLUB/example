@@ -10,12 +10,11 @@ on:
 
 env:
   PROJECT_NAME: example
-  GITHUB_REPOSITORY: ${{ GITHUB_REPOSITORY }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.projectName == env.PROJECT_NAME }}
+    if: ${{ github.event.inputs.projectName }} == ${{ env.PROJECT_NAME }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
