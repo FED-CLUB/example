@@ -50,4 +50,4 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-          body: "[发行版更新日志](https://github.com/${{ $GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"
+          body: "[更新日志](https://github.com/${{ $GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"
