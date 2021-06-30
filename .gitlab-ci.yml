@@ -3,9 +3,9 @@ code-review:
   tags:
     - fe-shell
   script:
-    - echo "代码内容审查"
-    - echo "代码格式检查"
-    - echo "代码单元测试"
+    - npm ci
+    - npm run lint
+    - npm run test
     - echo "推送代码到 github..."
     - if [ "$(git remote add github git@github.com:FED-CLUB/example.git)" ]; then echo "ok"; fi;
     - git config user.name fed-bot
