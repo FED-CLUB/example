@@ -8,12 +8,14 @@ on:
         required: true
         default: ""
 
+env:
+  PROJECT_NAME: example
+  GITHUB_REPOSITORY: ${{ GITHUB_REPOSITORY }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_REPOSITORY: ${{ GITHUB_REPOSITORY }}
-    if: ${{ github.event.inputs.projectName == GITHUB_REPOSITORY }}
+    if: ${{ github.event.inputs.projectName == env.PROJECT_NAME }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -44,8 +46,6 @@ jobs:
   create-github-release:
     needs: build
     runs-on: ubuntu-latest
-    env:
-      GITHUB_REPOSITORY: ${{ GITHUB_REPOSITORY }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/create-release@v1
@@ -54,4 +54,4 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-          body: "[更新日志](https://github.com/${{ GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"
+          body: "[更新日志](https://github.com/${{ env.GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"
