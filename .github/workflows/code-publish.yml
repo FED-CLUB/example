@@ -23,7 +23,6 @@ jobs:
       - run: echo "工程发布：创建新版本"
       - run: echo "工程发布：创建版本标签"
       - run: echo "工程发布：生成更新日志"
-      - run: echo "工程构建"
 
   publish-npm-package:
     needs: build
@@ -35,9 +34,10 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: echo "npm ci"
+      - run: echo "npm build"
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
   create-github-release:
     needs: build
@@ -45,6 +45,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
