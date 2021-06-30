@@ -1,0 +1,17 @@
+name: welcome
+
+on: 
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: '这是您的第一个提议，致谢！'
+          pr-message: '这是您的第一次代码贡献，致谢！'
