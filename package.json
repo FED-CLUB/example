@@ -6,6 +6,9 @@
         "cloudcome",
         "ydr.me"
     ],
+    "files": [
+        "index.js"
+    ],
     "author": "云淡然 <cloudcome@163.com>",
     "homepage": "https://github.com/FED-CLUB/example",
     "repository": "https://github.com/FED-CLUB/example",
