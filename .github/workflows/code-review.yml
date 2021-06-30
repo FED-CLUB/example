@@ -7,9 +7,6 @@ on:
   pull_request:
     branches:
       - v1.x
-  pull_request_target:
-    branches:
-      - v1.x
   
 jobs:
   corde-review:
