@@ -9,6 +9,34 @@ on:
         default: ""
 
 jobs:
+  echo-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJSON(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJSON(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJSON(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJSON(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJSON(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
+
   build:
     runs-on: ubuntu-latest
     if: github.event.inputs.projectName == 'example'
@@ -17,12 +45,11 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: echo "npm ci"
-      - run: echo "代码格式检查"
-      - run: echo "代码单元测试"
-      - run: echo "工程发布：创建新版本"
-      - run: echo "工程发布：创建版本标签"
-      - run: echo "工程发布：生成更新日志"
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run release
+      - run: git push --follow-tags
 
   publish-npm-package:
     needs: build
@@ -33,9 +60,9 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: echo "npm ci"
-      - run: echo "npm build"
-      - run: npm publish
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
@@ -52,4 +79,4 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-          body: "[更新日志](https://github.com/${{ env.GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"
+          body: "[更新日志](https://github.com/${{ github.repository }}/blob/${{ github.ref }}/CHANGELOG.md)"
