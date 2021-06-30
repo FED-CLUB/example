@@ -1,53 +1,53 @@
 name: code-publish
 
 on:
-    workflow_dispatch:
-        inputs:
-            projectName:
-                description: 请输入您即将要发布的工程名称
-                required: true
-                default: ""
+  workflow_dispatch:
+    inputs:
+      projectName:
+        description: 请输入您即将要发布的工程名称
+        required: true
+        default: ""
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - if: ${{ github.event.inputs.projectName == env.GITHUB_REPOSITORY }}
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v2
-            with:
-                node-version: 14
-            - run: echo "npm ci"
-            - run: echo "代码格式检查"
-            - run: echo "代码单元测试"
-            - run: echo "工程发布：创建新版本"
-            - run: echo "工程发布：创建版本标签"
-            - run: echo "工程发布：生成更新日志"
-            - run: echo "工程构建"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - if: ${{ github.event.inputs.projectName == env.GITHUB_REPOSITORY }}
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
+    - run: echo "npm ci"
+    - run: echo "代码格式检查"
+    - run: echo "代码单元测试"
+    - run: echo "工程发布：创建新版本"
+    - run: echo "工程发布：创建版本标签"
+    - run: echo "工程发布：生成更新日志"
+    - run: echo "工程构建"
 
-    publish-npm-package:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v2
-            with:
-                node-version: 14
-                registry-url: https://registry.npmjs.org/
-            - run: echo "npm ci"
-            - run: npm publish
-                env:
-                    NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+  publish-npm-package:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
+        registry-url: https://registry.npmjs.org/
+    - run: echo "npm ci"
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
-    create-github-release:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/create-release@v1
-              with:
-                  tag_name: ${{ github.ref }}
-                  release_name: Release ${{ github.ref }}
-                  draft: false
-                  prerelease: false
-                  body: "[发行版更新日志](https://github.com/${{ $GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"
+  create-github-release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/create-release@v1
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+        body: "[发行版更新日志](https://github.com/${{ $GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"

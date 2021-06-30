@@ -1,21 +1,21 @@
 name: code-review
 
 on:
-    push:
-        branches:
-            - v1.x
-    pull_request:
-        branches:
-            - v1.x
+  push:
+    branches:
+      - v1.x
+  pull_request:
+    branches:
+      - v1.x
 
 jobs:
-    corde-review:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v2
-              with:
-                  node-version: 14
-            - run: echo "npm ci"
-            - run: echo "代码格式检查"
-            - run: echo "代码单元测试"
+  corde-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: echo "npm ci"
+      - run: echo "代码格式检查"
+      - run: echo "代码单元测试"
