@@ -1,6 +1,10 @@
 name: welcome
 
-on: push
+on: 
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
 
 jobs:
   welcome:
