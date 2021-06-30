@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    if: ${{ github.event.inputs.projectName == env.GITHUB_REPOSITORY }}
+    if: ${{ github.event.inputs.projectName == GITHUB_REPOSITORY }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -50,4 +50,4 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-          body: "[更新日志](https://github.com/${{ $GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"
+          body: "[更新日志](https://github.com/${{ GITHUB_REPOSITORY }}/blob/${{ github.ref }}/CHANGELOG.md)"
