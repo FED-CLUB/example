@@ -1,31 +1,18 @@
 内网发布:
-  stage: test
-  tags:
-    - fe-shell
-  script:
-    - echo "合并请求到 v1.x 分支，开始验证..."
-    - echo "代码检查"
-    - echo "单元测试"
-    - echo "工程构建"
-    - echo "内网版本发布"
-  only:
-    - v1.x
-
-外网发布:
-  stage: test
-  tags:
-    - fe-shell
-  script:
-    - echo "合并请求到 v1.x 分支，开始验证..."
-    - echo "代码检查"
-    - echo "单元测试"
-    - echo "推送代码到 github..."
-    - if [ "$(git remote add github git@github.com:FED-CLUB/example.git)" ]; then echo "ok"; fi;
-    - git config user.name fed-bot
-    - git config user.email fed-bot@isyscore.com
-    - git checkout v1.x-stable
-    - git pull origin v1.x-stable
-    - git push --set-upstream github v1.x-stable
-    - echo "推送成功，请订阅 github 上的工作流状态"
-  only:
-    - v1.x-stable
+    stage: test
+    tags:
+        - fe-shell
+    script:
+        - echo "代码内容审查"
+        - echo "代码格式检查"
+        - echo "代码单元测试"
+        - echo "推送代码到 github..."
+        - if [ "$(git remote add github git@github.com:FED-CLUB/example.git)" ]; then echo "ok"; fi;
+        - git config user.name fed-bot
+        - git config user.email fed-bot@isyscore.com
+        - git checkout v1.x
+        - git pull origin v1.x
+        - git push --set-upstream github v1.x
+        - echo "推送成功，请订阅 github 上的工作流状态"
+    only:
+        - v1.x
