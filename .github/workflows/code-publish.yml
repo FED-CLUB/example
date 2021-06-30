@@ -4,17 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       projectName:
-        description: 请输入您即将要发布的工程名称
+        description: 请输入您即将要发版的工程名称
         required: true
         default: ""
-
-env:
-  PROJECT_NAME: example
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.inputs.projectName == env.PROJECT_NAME
+    if: github.event.inputs.projectName == 'example'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
