@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.1.0 (2021-07-01)
+
+
+### Features
+
+* test npm publish ([f466fe6](https://github.com/FED-CLUB/example/commit/f466fe6b233d33b16ee3f4322ee51909d97ccab2))
+
 ### 1.0.6 (2021-07-01)
 
 ### 1.0.5 (2021-07-01)
