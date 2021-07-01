@@ -9,35 +9,6 @@ on:
         default: ""
 
 jobs:
-  echo-context:
-    needs: project-release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Dump job context
-        env:
-          JOB_CONTEXT: ${{ toJSON(job) }}
-        run: echo "$JOB_CONTEXT"
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ toJSON(steps) }}
-        run: echo "$STEPS_CONTEXT"
-      - name: Dump runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJSON(runner) }}
-        run: echo "$RUNNER_CONTEXT"
-      - name: Dump strategy context
-        env:
-          STRATEGY_CONTEXT: ${{ toJSON(strategy) }}
-        run: echo "$STRATEGY_CONTEXT"
-      - name: Dump matrix context
-        env:
-          MATRIX_CONTEXT: ${{ toJSON(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
-
   project-release:
     runs-on: ubuntu-latest
     if: github.event.inputs.projectName == github.event.repository.name
@@ -75,13 +46,16 @@ jobs:
      - name: Get the version
        id: git_tag
        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-     - uses: actions/create-release@v1
-       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         GIT_VERSION: ${{ steps.git_tag.outputs.VERSION }}
-       with:
-         tag_name: ${{ env.GIT_VERSION }}
-         release_name: Release ${{ env.GIT_VERSION }}
-         draft: false
-         prerelease: false
-         body: "[更新日志](https://github.com/${{ github.repository }}/blob/${{ env.GIT_VERSION }}/CHANGELOG.md)"
+     - run: git branch
+     - run: git tag --list
+     - run: git tag --points-at HEAD --list "v*"
+#     - uses: actions/create-release@v1
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         GIT_VERSION: ${{ steps.git_tag.outputs.VERSION }}
+#       with:
+#         tag_name: ${{ env.GIT_VERSION }}
+#         release_name: Release ${{ env.GIT_VERSION }}
+#         draft: false
+#         prerelease: false
+#         body: "[更新日志](https://github.com/${{ github.repository }}/blob/${{ env.GIT_VERSION }}/CHANGELOG.md)"
