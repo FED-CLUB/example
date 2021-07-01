@@ -1,4 +1,4 @@
-name: code-publish
+name: npm-publish
 
 on:
   workflow_dispatch:

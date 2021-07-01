@@ -1,3 +1,5 @@
+name: github-release
+
 on:
   push:
     tags:
