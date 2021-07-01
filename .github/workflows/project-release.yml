@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+        env:
+          GITHUB_TOKEN: ${{ secrets. PATNAME }}
       - run: npm ci
       - run: npm run lint
       - run: npm run test
