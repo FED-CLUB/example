@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.5.2 (2021-07-01)
+
+
+### Bug Fixes
+
+* fix 类型提交 ([1173c5f](https://github.com/FED-CLUB/example/commit/1173c5fdb44dad402bbc201e12145e4fb58f4f27))
+
 ### 1.5.1 (2021-07-01)
 
 
