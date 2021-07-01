@@ -10,7 +10,7 @@ on:
 
 jobs:
   echo-context:
-    needs: build
+    needs: project-release
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
@@ -38,7 +38,7 @@ jobs:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
 
-  build:
+  project-release:
     runs-on: ubuntu-latest
     if: github.event.inputs.projectName == github.event.repository.name
     steps:
@@ -55,7 +55,7 @@ jobs:
       - run: git push --follow-tags
 
   publish-npm-package:
-    needs: build
+    needs: project-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -70,7 +70,7 @@ jobs:
       - run: npm publish --access=public --registry=https://npm.pkg.github.com
 
   # create-github-release:
-  #   needs: build
+  #   needs: project-release
   #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: actions/checkout@v2
