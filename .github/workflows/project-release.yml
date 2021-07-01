@@ -22,7 +22,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run test
-      - run: git config user.name fed-bot
-      - run: git config user.email fed-bot@isyscore.com
+      - run: git config user.name 张云来
+      - run: git config user.email zhangyl@isyscore.com
       - run: npm run release
       - run: git push --follow-tags
