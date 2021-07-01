@@ -62,12 +62,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+          registry-url: https://registry.npmjs.com
       - run: npm ci
       - run: npm run build
-      - run: npm publish --access public --registry=https://registry.npmjs.com
+      - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  #    - run: npm publish --access public --registry=https://npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
+  #    - run: npm publish --access=public --registry=https://npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
 
   # create-github-release:
   #   needs: build
