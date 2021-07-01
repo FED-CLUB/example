@@ -65,8 +65,9 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >> .npmrc
-      - run: npm publish --access=public --registry=https://registry.npmjs.org
-  #    - run: npm publish --access=public --registry=https://npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish --access=public
+      - run: echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' >> .npmrc
+      - run: npm publish
 
   # create-github-release:
   #   needs: build
