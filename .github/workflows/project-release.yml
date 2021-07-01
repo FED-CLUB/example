@@ -12,8 +12,6 @@ jobs:
   project-release:
     if: github.event.inputs.projectName == github.event.repository.name
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
         with:

@@ -22,22 +22,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get the version
-        id: git_tag
+      - id: git_tag
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - run: git branch
-      - run: git tag --list
-      - run: git tag --points-at HEAD --list "v*"
-      - run: cat package.json
-      - run: echo ${{ steps.git_tag.outputs.VERSION }}
-  #     - uses: actions/create-release@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-  #         GIT_VERSION: ${{ steps.git_tag.outputs.VERSION }}
-  #       with:
-  #         tag_name: ${{ env.GIT_VERSION }}
-  #         release_name: Release ${{ env.GIT_VERSION }}
-  #         draft: false
-  #         prerelease: false
-  #         body: "[更新日志](https://github.com/${{ github.repository }}/blob/${{ env.GIT_VERSION }}/CHANGELOG.md)"
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          GIT_VERSION: ${{ steps.git_tag.outputs.VERSION }}
+        with:
+          tag_name: ${{ env.GIT_VERSION }}
+          release_name: Release ${{ env.GIT_VERSION }}
+          draft: false
+          prerelease: false
+          body: "[${{ env.GIT_VERSION }} changelog](https://github.com/${{ github.repository }}/blob/${{ env.GIT_VERSION }}/CHANGELOG.md)"
 
