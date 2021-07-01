@@ -64,9 +64,9 @@ jobs:
           node-version: 14
       - run: npm ci
       - run: npm run build
-      - run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >> .npmrc
+      - run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' > .npmrc
       - run: npm publish --access=public
-      - run: echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' >> .npmrc
+      - run: echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' > .npmrc
       - run: npm publish
 
   # create-github-release:
