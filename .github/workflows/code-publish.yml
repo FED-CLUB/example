@@ -66,10 +66,10 @@ jobs:
       - run: npm run build
       - run: npm publish --access public --registry=https://registry.npmjs.com
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm publish --access public --registry=https://npm.pkg.github.com
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # create-github-release:
   #   needs: build
