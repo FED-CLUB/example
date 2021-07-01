@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.3.0 (2021-07-01)
+
+
+### Features
+
+* code-publish 实现 create github release job 2 ([e26f27f](https://github.com/FED-CLUB/example/commit/e26f27fa18e6445ce8057b9e1c31efc7e27fa213))
+
 ## 1.2.0 (2021-07-01)
 
 
