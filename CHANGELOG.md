@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.5.5 (2021-07-01)
+
+
+### Bug Fixes
+
+* github action 中产生的 tag 触发另一个 github action ([6554f9b](https://github.com/FED-CLUB/example/commit/6554f9b8639019b81a05659cbd5e93eae4e6db32))
+
 ### 1.5.4 (2021-07-01)
 
 
