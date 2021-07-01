@@ -10,8 +10,10 @@ on:
 
 jobs:
   project-release:
-    runs-on: ubuntu-latest
     if: github.event.inputs.projectName == github.event.repository.name
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -24,5 +26,3 @@ jobs:
       - run: git config user.email fed-bot@isyscore.com
       - run: npm run release
       - run: git push --follow-tags
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
