@@ -66,20 +66,22 @@ jobs:
       - run: npm run build
       - run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' > .npmrc
       - run: npm publish --access=public --registry=https://registry.npmjs.org
-      - run: echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' > .npmrc
-      - run: npm publish --access=public --registry=https://npm.pkg.github.com
 
-  # create-github-release:
-  #   needs: project-release
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/create-release@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       with:
-  #         tag_name: ${{ github.ref }}
-  #         release_name: Release ${{ github.ref }}
-  #         draft: false
-  #         prerelease: false
-  #         body: "[更新日志](https://github.com/${{ github.repository }}/blob/${{ github.ref }}/CHANGELOG.md)"
+  create-github-release:
+    needs: project-release
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+     - name: Get the version
+       id: git_tag
+       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+     - uses: actions/create-release@v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         GIT_VERSION: ${{ steps.git_tag.outputs.VERSION }}
+       with:
+         tag_name: ${{ env.GIT_VERSION }}
+         release_name: Release ${{ env.GIT_VERSION }}
+         draft: false
+         prerelease: false
+         body: "[更新日志](https://github.com/${{ github.repository }}/blob/${{ env.GIT_VERSION }}/CHANGELOG.md)"
