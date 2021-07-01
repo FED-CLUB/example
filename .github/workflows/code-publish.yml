@@ -49,6 +49,8 @@ jobs:
      - run: git branch
      - run: git tag --list
      - run: git tag --points-at HEAD --list "v*"
+     - run: cat package.json
+     - run: echo ${{ steps.git_tag.outputs.VERSION }}
 #     - uses: actions/create-release@v1
 #       env:
 #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
