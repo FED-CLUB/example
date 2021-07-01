@@ -1,6 +1,6 @@
 {
     "name": "@isyscore/example",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "一个演示的 npm 包",
     "scripts": {
         "lint": "echo '代码格式检查'",
