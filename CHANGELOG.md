@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.5.8 (2021-07-01)
+
+
+### Bug Fixes
+
+* project release ([1527d8c](https://github.com/FED-CLUB/example/commit/1527d8ce95ebc0b40617e254785de7d25d7dfa5a))
+
 ### 1.5.7 (2021-07-01)
 
 
