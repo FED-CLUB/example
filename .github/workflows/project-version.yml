@@ -3,7 +3,7 @@ name: project-version
 on:
   push:
     tags:
-      - v*
+      - 'v*'
 
 jobs:
   publish-npm-package:
