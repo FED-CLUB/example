@@ -1,13 +1,8 @@
 name: code-review
 
 on:
-  push:
-    branches:
-      - v1.x
-  pull_request:
-    branches:
-      - v1.x
-  
+  push
+
 jobs:
   corde-review:
     runs-on: ubuntu-latest
