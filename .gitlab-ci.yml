@@ -2,6 +2,8 @@ code-review:
   stage: test
   tags:
     - fe-shell
+  only:
+    - v1.x
   script:
     - npm ci
     - npm run lint
@@ -14,5 +16,3 @@ code-review:
     - git pull origin v1.x
     - git push --set-upstream github v1.x
     - echo "推送成功，请订阅 github 上的工作流状态"
-  only:
-    - v1.x
