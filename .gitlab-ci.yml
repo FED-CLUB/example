@@ -3,16 +3,16 @@ code-review:
   tags:
     - fe-shell
   only:
-    - v1.x
+    - /v\d+\.x/
   script:
     - npm ci
     - npm run lint
     - npm run test
     - echo "推送代码到 github..."
-    - if [ "$(git remote add github git@github.com:FED-CLUB/example.git)" ]; then echo "ok"; fi;
+    - git remote add github git@github.com:FED-CLUB/example.git >/dev/null 2>&1
     - git config user.name fed-bot
     - git config user.email fed-bot@isyscore.com
-    - git checkout v1.x
-    - git pull origin v1.x
-    - git push --set-upstream github v1.x
+    - git checkout $CI_COMMIT_REF_NAME
+    - git pull origin $CI_COMMIT_REF_NAME
+    - git push --set-upstream github $CI_COMMIT_REF_NAME
     - echo "推送成功，请订阅 github 上的工作流状态"
