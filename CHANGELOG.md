@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.6.0 (2021-09-07)
+
+
+### Features
+
+* code-review 调整为所有分支 ([d8af6ae](https://github.com/FED-CLUB/example/commit/d8af6ae4ecc35e81100ca3179d1a9b6d51e003bd))
+
 ### 1.5.10 (2021-07-02)
 
 ### 1.5.9 (2021-07-01)
